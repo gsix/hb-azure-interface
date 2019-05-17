@@ -1,0 +1,8 @@
+<h1>Project <%= @project.id %> Edit</h1>
+
+<%= simple_form_for @project do |f| %>
+  <%= f.input :azure_id, readonly: true %>
+  <%= f.input :azure_name, readonly: true %>
+  <%= f.input :hubstaff_id %>
+  <%= f.button :submit %>
+<% end %>

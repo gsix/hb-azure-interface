@@ -1,0 +1,25 @@
+<h1>Member <%= @member.id %></h1>
+
+<p>name: <strong><%= @member.name %></strong></p>
+<p>azure_id: <%= @member.azure_id %></p>
+<p>azure_email: <%= @member.azure_email %></p>
+<p>hubstaff_id: <%= @member.hubstaff_id %></p>
+
+<div>
+  <%= link_to 'edit', edit_member_path(@member) %>
+</div>
+<hr />
+
+<span>present in organizations: </span>
+<hr />
+
+<table>
+  <tbody>
+    <% @member.organizations.each do |organization| %>
+      <tr>
+        <td><%= link_to organization.title, organization_path(organization) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

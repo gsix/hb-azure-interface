@@ -1,0 +1,13 @@
+<span>organizations: </span>
+<%= link_to 'list', organizations_path %>
+<%= link_to 'add', new_organization_path %>
+<hr />
+
+<h1>Organization <%= @organization.id %> Edit</h1>
+
+<%= simple_form_for @organization do |f| %>
+  <%= f.input :azure_id %>
+  <%= f.input :azure_access_token %>
+  <%= f.input :hubstaff_id %>
+  <%= f.button :submit %>
+<% end %>

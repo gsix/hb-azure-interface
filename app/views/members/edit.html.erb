@@ -1,0 +1,8 @@
+<h1>Member <%= @member.id %> Edit</h1>
+
+<%= simple_form_for @member do |f| %>
+  <%= f.input :azure_id, readonly: true %>
+  <%= f.input :azure_email, readonly: true %>
+  <%= f.input :hubstaff_id %>
+  <%= f.button :submit %>
+<% end %>

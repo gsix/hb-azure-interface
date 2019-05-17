@@ -1,0 +1,51 @@
+<span>organizations: </span>
+<%= link_to 'list', organizations_path %>
+<%= link_to 'add', new_organization_path %>
+<hr />
+
+<h1>Organization <%= @organization.id %></h1>
+
+<p>title: <strong><%= @organization.title %></strong></p>
+<p>azure_id: <%= @organization.azure_id %></p>
+<p>azure_access_token: <%= @organization.azure_access_token %></p>
+<p>hubstaff_id: <%= @organization.hubstaff_id %></p>
+
+<div>
+  <%= link_to 'edit', edit_organization_path(@organization) %>
+  <%= link_to 'delete', organization_path(@organization), method: :delete %></p>
+</div>
+<hr />
+
+<span>members: </span>
+<%= link_to 'get azure list', get_from_azure_organization_members_path(@organization) %>
+<hr />
+
+<table>
+  <tbody>
+    <% @organization.members.each do |member| %>
+      <tr>
+        <td><%= link_to member.name, member_path(member) %></td>
+        <td><%= member.hubstaff_status %></td>
+        <td><%= link_to 'edit', edit_organization_member_path(@organization, member) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<hr />
+
+<span>projects: </span>
+<%= link_to 'get azure list', get_from_azure_organization_projects_path(@organization) %>
+<hr />
+
+<table>
+  <tbody>
+    <% @organization.projects.each do |project| %>
+      <tr>
+        <td><%= link_to project.title, organization_project_path(@organization, project) %></td>
+        <td><%= project.hubstaff_status %></td>
+        <td><%= link_to 'edit', edit_organization_project_path(@organization, project) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
