@@ -16,6 +16,30 @@ class HubstaffClient
     })
   end
 
+  def organization_tasks access_token, organization_id
+    HTTParty.get("https://api.hubstaff.com/v2/organizations/#{organization_id}/tasks", {
+      headers: {
+        'Content-Type' => 'application/json',
+        Accept: 'application/json',
+        Authorization: "Bearer #{access_token}"
+      }
+    })
+  end
+
+  # one previous hours by default
+  def organization_activities(access_token, organization_id, hours_ago: 1)
+    start_time = (DateTime.now - hours_ago.hours).utc.iso8601
+    stop_time = DateTime.now.utc.iso8601
+
+    HTTParty.get("https://api.hubstaff.com/v2/organizations/#{organization_id}/activities?time_slot[start]=#{start_time}&time_slot[stop]=#{stop_time}", {
+      headers: {
+        'Content-Type' => 'application/json',
+        Accept: 'application/json',
+        Authorization: "Bearer #{access_token}"
+      }
+    })
+  end
+
   def access_token_request code
     HTTParty.post("https://account.hubstaff.com/access_tokens?grant_type=authorization_code&code=#{code}&redirect_uri=#{configs[:app_redirect_url]}", {
       basic_auth: { username: configs[:app_client_id], password: configs[:app_client_secret] }
