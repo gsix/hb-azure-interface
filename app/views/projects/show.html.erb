@@ -12,3 +12,18 @@
 
 <span>belongs to organization: </span>
 <%= link_to @project.organization.title, organization_path(@project.organization) %>
+
+<hr />
+tasks:
+<hr />
+
+<table>
+  <tbody>
+    <% @project.tasks.each do |task| %>
+      <tr>
+        <td><%= link_to task.title, task_path(task) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

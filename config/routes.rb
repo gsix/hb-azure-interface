@@ -3,14 +3,27 @@ Rails.application.routes.draw do
 
   resources :members
   resources :projects
+  resources :tasks
 
   resources :organizations do
+    get 'edit_hubstaff_access', to: 'organizations#edit_hubstaff_access', on: :member
+    get '/hubstaff_start_auth_code_callback', to: 'organizations#hubstaff_start_auth_code', on: :collection
+    post 'update_hubstaff_start_auth_code', to: 'organizations#update_hubstaff_start_auth_code', on: :member
+
     resources :members do
       get 'get-from-azure', to: 'members#azure_list', on: :collection
     end
 
     resources :projects do
       get 'get-from-azure', to: 'projects#azure_list', on: :collection
+    end
+  end
+
+  scope :api do
+    scope :tasks do
+      post 'azure_hook_create', to: 'api/tasks#azure_hook_create'
+      post 'azure_hook_update', to: 'api/tasks#azure_hook_update'
+      post 'azure_hook_destroy', to: 'api/tasks#azure_hook_destroy'
     end
   end
 end

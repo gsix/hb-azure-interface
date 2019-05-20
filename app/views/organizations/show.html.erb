@@ -8,7 +8,15 @@
 <p>title: <strong><%= @organization.title %></strong></p>
 <p>azure_id: <%= @organization.azure_id %></p>
 <p>azure_access_token: <%= @organization.azure_access_token %></p>
-<p>hubstaff_id: <%= @organization.hubstaff_id %></p>
+<p>
+  hubstaff_id: <%= @organization.hubstaff_id %>
+  <%= link_to 'hubstaff access edit', edit_hubstaff_access_organization_path(@organization) %>
+</p>
+<p>hubstaff_start_auth_code: <%= @organization.hubstaff_start_auth_code %></p>
+<p>hubstaff_access_token: <%= @organization.hubstaff_access_token %></p>
+<p>hubstaff_refresh_token: <%= @organization.hubstaff_refresh_token %></p>
+<p>hubstaff_token_get_at: <%= @organization.hubstaff_token_get_at %></p>
+<p>hubstaff_token_will_end: <%= @organization.hubstaff_token_will_end %></p>
 
 <div>
   <%= link_to 'edit', edit_organization_path(@organization) %>
