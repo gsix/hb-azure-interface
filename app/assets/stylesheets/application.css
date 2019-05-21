@@ -19,6 +19,22 @@ body {
   background: #1abc9c
 }
 
+header {
+  width: 800px;
+  padding: 10px;
+  margin: 10px auto
+}
+
+header a {
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none
+}
+
+header a:hover {
+  text-decoration: underline
+}
+
 .container {
   background: white;
   padding: 40px 10px;
@@ -30,7 +46,9 @@ body {
 table {
   width: 100%;
   margin: 10px 0px;
-  font-size: 12px
+  font-size: 12px;
+  background: #f7f7fb;
+  padding: 5px;
 }
 
 .simple_form .input {

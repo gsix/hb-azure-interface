@@ -11,6 +11,10 @@
   </head>
 
   <body>
+    <header>
+      <%= link_to 'organizations', organizations_path %>
+      <%= link_to 'members', members_path %>
+    </header>
     <div class="container">
       <%= yield %>
     </div>

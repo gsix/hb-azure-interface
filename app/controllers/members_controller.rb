@@ -1,6 +1,10 @@
 class MembersController < ApplicationController
   before_action :find_member, only: %i(show edit update)
 
+  def index
+    @members = Member.all
+  end
+
   def azure_list
     @organization = Organization.find(params[:organization_id])
 
