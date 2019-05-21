@@ -16,6 +16,30 @@ class HubstaffClient
     })
   end
 
+  def task_update access_token, task_id, title, assignee_id, lock_version
+    HTTParty.put("https://api.hubstaff.com/v2/tasks/#{task_id}", {
+      body: {
+        summary: title,
+        lock_version: lock_version,
+        assignee_id: assignee_id
+      }.to_json,
+      headers: {
+        'Content-Type' => 'application/json',
+        Accept: 'application/json',
+        Authorization: "Bearer #{access_token}"
+      }
+    })
+  end
+
+  def task_delete access_token, task_id
+    HTTParty.delete("https://api.hubstaff.com/v2/tasks/#{task_id}", {
+      headers: {
+        Accept: 'application/json',
+        Authorization: "Bearer #{access_token}"
+      }
+    })
+  end
+
   def organization_tasks access_token, organization_id
     HTTParty.get("https://api.hubstaff.com/v2/organizations/#{organization_id}/tasks", {
       headers: {
