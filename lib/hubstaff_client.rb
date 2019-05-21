@@ -26,7 +26,6 @@ class HubstaffClient
     })
   end
 
-  # one previous hours by default
   def organization_activities(access_token, organization_id, hours_ago: 1)
     start_time = (DateTime.now - hours_ago.hours).utc.iso8601
     stop_time = DateTime.now.utc.iso8601
@@ -42,6 +41,12 @@ class HubstaffClient
 
   def access_token_request code
     HTTParty.post("https://account.hubstaff.com/access_tokens?grant_type=authorization_code&code=#{code}&redirect_uri=#{configs[:app_redirect_url]}", {
+      basic_auth: { username: configs[:app_client_id], password: configs[:app_client_secret] }
+    })
+  end
+
+  def refresh_access_token_request refresh_token
+    HTTParty.post("https://account.hubstaff.com/access_tokens?grant_type=refresh_token&refresh_token=#{refresh_token}&scope=hubstaff:read hubstaff:write", {
       basic_auth: { username: configs[:app_client_id], password: configs[:app_client_secret] }
     })
   end

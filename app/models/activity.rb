@@ -5,7 +5,7 @@ class Activity < ApplicationRecord
 
   def self.import_from_hubstaff
     Organization.all.each do |organization|
-      raw_activities = HubstaffClient.new.organization_activities organization.hubstaff_access_token, organization.hubstaff_id
+      raw_activities = HubstaffClient.new.organization_activities organization.fresh_hubstaff_access_token, organization.hubstaff_id
 
       raw_activities['activities'].each do |raw_activity|
         next if Activity.where(hubstaff_id: raw_activity['id']).any?
@@ -22,7 +22,6 @@ class Activity < ApplicationRecord
         activity.hubstaff_id = raw_activity['id']
 
         activity.save!
-
       rescue => e
         Rails.logger.error e
       end

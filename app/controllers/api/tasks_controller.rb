@@ -15,7 +15,7 @@ class Api::TasksController < Api::BaseController
     member = Member.find_by_azure_email!(member_email)
     task.member = member
 
-    res = HubstaffClient.new.task_create task.project.organization.hubstaff_access_token, task.project.hubstaff_id, task.title, task.member.hubstaff_id
+    res = HubstaffClient.new.task_create task.project.organization.fresh_hubstaff_access_token, task.project.hubstaff_id, task.title, task.member.hubstaff_id
     task.hubstaff_id = res.parsed_response['task']['id']
 
     task.save!
