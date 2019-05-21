@@ -4,6 +4,7 @@
 <p>azure_id: <%= @project.azure_id %></p>
 <p>azure_name: <%= @project.azure_name %></p>
 <p>hubstaff_id: <%= @project.hubstaff_id %></p>
+<p>tracked: <%= @project.tracked %>s</p>
 
 <div>
   <%= link_to 'edit', edit_project_path(@project) %>
@@ -22,6 +23,7 @@ tasks:
     <% @project.tasks.each do |task| %>
       <tr>
         <td><%= link_to task.title, task_path(task) %></td>
+        <td><%= task.tracked %>s</td>
       </tr>
     <% end %>
   </tbody>

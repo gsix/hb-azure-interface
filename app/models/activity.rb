@@ -1,6 +1,7 @@
 class Activity < ApplicationRecord
   belongs_to :task, optional: true
   belongs_to :project
+  after_create :task_update
 
   def self.import_from_hubstaff
     Organization.all.each do |organization|
@@ -21,9 +22,17 @@ class Activity < ApplicationRecord
         activity.hubstaff_id = raw_activity['id']
 
         activity.save!
+
       rescue => e
         Rails.logger.error e
       end
     end
+  end
+
+  private
+
+  def task_update
+    return nil if task.blank?
+    task.tracked_azure_update
   end
 end

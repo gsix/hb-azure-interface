@@ -3,6 +3,7 @@
 <p>title: <strong><%= @task.title %></strong></p>
 <p>azure_id: <%= @task.azure_id %></p>
 <p>hubstaff_id: <%= @task.hubstaff_id %></p>
+<p>tracked: <%= @task.tracked %>s</p>
 
 <hr />
 <p>member: <%= link_to @task.member.name, member_path(@task.member) %></p>
