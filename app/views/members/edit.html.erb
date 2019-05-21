@@ -1,4 +1,7 @@
-<h1>Member <%= @member.id %> Edit</h1>
+<div class="resource_title">
+  <span>Member <%= @member.id %></span>
+  <h1><%= @member.name %></h1>
+</div>
 
 <%= simple_form_for @member do |f| %>
   <%= f.input :azure_id, readonly: true %>

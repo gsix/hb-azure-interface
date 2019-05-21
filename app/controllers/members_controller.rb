@@ -7,12 +7,13 @@ class MembersController < ApplicationController
     res = AzureClient.new.members @organization.azure_id, @organization.azure_access_token
 
     res.parsed_response['members'].each do |raw_member|
-      next if Member.where(azure_id: raw_member['id']).any?
+      member = Member.find_or_initialize_by azure_id: raw_member['id']
 
-      member = Member.new
-      member.azure_id = raw_member['id']
       member.azure_email = raw_member['user']['mailAddress']
-      member.organizations << @organization
+
+      if member.organizations.select {|org| org.id == @organization.id }.blank?
+        member.organizations << @organization
+      end
 
       member.save
     end

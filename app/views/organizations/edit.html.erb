@@ -3,7 +3,10 @@
 <%= link_to 'add', new_organization_path %>
 <hr />
 
-<h1>Organization <%= @organization.id %> Edit</h1>
+<div class="resource_title">
+  <span>Organization <%= @organization.id %></span>
+  <h1><%= @organization.title %></h1>
+</div>
 
 <%= simple_form_for @organization do |f| %>
   <%= f.input :azure_id %>

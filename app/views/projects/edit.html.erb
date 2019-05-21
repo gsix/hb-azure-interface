@@ -1,4 +1,7 @@
-<h1>Project <%= @project.id %> Edit</h1>
+<div class="resource_title">
+  <span>Project <%= @project.id %></span>
+  <h1><%= @project.title %></h1>
+</div>
 
 <%= simple_form_for @project do |f| %>
   <%= f.input :azure_id, readonly: true %>

@@ -27,7 +27,7 @@ class Api::TasksController < Api::BaseController
   def azure_hook_update
     render json: {}, status: :ok and return if params[:resource][:revision][:fields]['System.AssignedTo'].nil?
 
-    task = Task.find_or_create_by azure_id: params[:resource][:revision][:id]
+    task = Task.find_or_initialize_by azure_id: params[:resource][:revision][:id]
     task.title = params[:resource][:revision][:fields]['System.Title']
 
     project = Project.find_by_azure_id!(params[:resourceContainers][:project][:id])

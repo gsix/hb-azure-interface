@@ -1,29 +1,32 @@
-<h1>Project <%= @project.id %></h1>
+<div class="resource_title">
+  <span>Project <%= @project.id %></span>
+  <h1><%= @project.title %></h1>
+</div>
 
-<p>title: <strong><%= @project.title %></strong></p>
-<p>azure_id: <%= @project.azure_id %></p>
-<p>azure_name: <%= @project.azure_name %></p>
-<p>hubstaff_id: <%= @project.hubstaff_id %></p>
-<p>tracked: <%= @project.tracked %>s</p>
+<div class="extend_info">
+  <p>azure_id: <%= @project.azure_id %></p>
+  <p>azure_name: <%= @project.azure_name %></p>
+  <p>hubstaff_id: <%= @project.hubstaff_id %></p>
+  <p>tracked: <%= @project.tracked_hours %>h</p>
+</div>
 
 <div>
   <%= link_to 'edit', edit_project_path(@project) %>
 </div>
 <hr />
 
-<span>belongs to organization: </span>
+<span>organization: </span>
 <%= link_to @project.organization.title, organization_path(@project.organization) %>
 
 <hr />
 tasks:
-<hr />
 
 <table>
   <tbody>
     <% @project.tasks.each do |task| %>
       <tr>
         <td><%= link_to task.title, task_path(task) %></td>
-        <td><%= task.tracked %>s</td>
+        <td><%= task.tracked_hours %>h</td>
       </tr>
     <% end %>
   </tbody>

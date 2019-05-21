@@ -1,17 +1,20 @@
-<h1>Member <%= @member.id %></h1>
+<div class="resource_title">
+  <span>Member <%= @member.id %></span>
+  <h1><%= @member.name %></h1>
+</div>
 
-<p>name: <strong><%= @member.name %></strong></p>
-<p>azure_id: <%= @member.azure_id %></p>
-<p>azure_email: <%= @member.azure_email %></p>
-<p>hubstaff_id: <%= @member.hubstaff_id %></p>
+<div class="extend_info">
+  <p>azure_id: <%= @member.azure_id %></p>
+  <p>azure_email: <%= @member.azure_email %></p>
+  <p>hubstaff_id: <%= @member.hubstaff_id %></p>
+</div>
 
 <div>
   <%= link_to 'edit', edit_member_path(@member) %>
 </div>
 <hr />
 
-<span>present in organizations: </span>
-<hr />
+<span>organizations: </span>
 
 <table>
   <tbody>

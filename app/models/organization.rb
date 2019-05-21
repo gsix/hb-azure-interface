@@ -8,6 +8,8 @@ class Organization < ApplicationRecord
 
   # ! use this method instead hubstaff_access_token in HubstaffClient requests
   def fresh_hubstaff_access_token
+    raise 'Organiaztion not connected to HB. Please edit hubstaff start auth code.' if hubstaff_token_will_end.blank?
+
     # still fresh
     return hubstaff_access_token if hubstaff_token_will_end - 2.hours > DateTime.now
 
