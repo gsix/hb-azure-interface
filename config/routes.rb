@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   end
 
   scope :api do
+    root to: 'api/base#home'
+
     scope :tasks do
       post 'azure_hook_create', to: 'api/tasks#azure_hook_create'
       post 'azure_hook_update', to: 'api/tasks#azure_hook_update'
