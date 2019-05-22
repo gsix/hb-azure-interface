@@ -1,24 +1,54 @@
-# README
+# HbAzureInterface
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Приложение для синхронизации данных между dev.azure и hubstaff по наработанному времени
 
-Things you may want to cover:
+### Фишки
+- Приём вебхуков о событиях по work items от dev.azure
+- Передача данных hubstaff
+- Опрашивание hubstaff и получение наработанного времени по каждой задаче
+- Передача наработанного времени в dev.azure
 
-* Ruby version
+### Зависимости
+- PostgreSQL 9.5
+- Ruby 2.6.1
+- Rails 5.2.3
 
-* System dependencies
+### Предварительная настройка
+Необходимо [создать приложение](https://developer.hubstaff.com/apps) для авторизации на hubstaff.
+В credentials записать ключи и redirect_url от созданного приложения.
 
-* Configuration
+# Usage
 
-* Database creation
+### Создание пользователя
+В приложении отключена регистрация.
+Юзера можно создать выполнив сиды, либо руками в консоли
+`User.create! email: "admin@mail.ru", password: "password"`
 
-* Database initialization
+### Создание организации
+При подключении огранизации необходимо указать
+- azure_id - id вашей организации в dev.azure. Найдёте по url
+- azure_access_token - документация по созданию [вот](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops)
+- hubstaff_id - id вашей организации в hubstaff. Найдёте по url
 
-* How to run the test suite
+### Подключение огранизации к hubstaff
+- На странице организации нажмите "hubstaff access edit"
+- запросите код "get code"
+- авторизуйтесь в hubstaff
+- скопируйте полученный код
+- вставьте в инпут на странице "hubstaff access edit" и сохраните
 
-* Services (job queues, cache servers, search engines, etc.)
+### Настройка сотрудников
+- На странице организации нажмите "members: get azure list"
+- Подключите каждого сотрудника к hubstaff нажав edit в его странице. Список ссылок на сотрудников из hubstaff должен появится при редактировании
 
-* Deployment instructions
+### Настройка проектов
+- На странице организации нажмите "projects: get azure list"
+- Подключите каждый проект к hubstaff нажав edit в его странице. Список ссылок на проекты из hubstaff должен появится при редактировании
 
-* ...
+### Подключение проекта со стороны dev.azure
+- Зайдите в настройки проекта на dev.azure
+- Нажмите Service Hooks => добавить (+) => выберите web hooks
+- Выберите действие (work item created)
+- next
+- Вставьте url колбека из домашней страницы приложения HbAzureInterface и нажмите finish
+- Добавьте остальные хуки
