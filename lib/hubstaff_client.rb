@@ -43,7 +43,33 @@ class HubstaffClient
   def organization_tasks access_token, organization_id
     HTTParty.get("https://api.hubstaff.com/v2/organizations/#{organization_id}/tasks", {
       headers: {
-        'Content-Type' => 'application/json',
+        Accept: 'application/json',
+        Authorization: "Bearer #{access_token}"
+      }
+    })
+  end
+
+  def organization_projects access_token, organization_id
+    HTTParty.get("https://api.hubstaff.com/v2/organizations/#{organization_id}/projects", {
+      headers: {
+        Accept: 'application/json',
+        Authorization: "Bearer #{access_token}"
+      }
+    })
+  end
+
+  def organization_members access_token, organization_id
+    HTTParty.get("https://api.hubstaff.com/v2/organizations/#{organization_id}/members", {
+      headers: {
+        Accept: 'application/json',
+        Authorization: "Bearer #{access_token}"
+      }
+    })
+  end
+
+  def organization_user access_token, user_id
+    HTTParty.get("https://api.hubstaff.com/v2/users/#{user_id}", {
+      headers: {
         Accept: 'application/json',
         Authorization: "Bearer #{access_token}"
       }
@@ -56,7 +82,6 @@ class HubstaffClient
 
     HTTParty.get("https://api.hubstaff.com/v2/organizations/#{organization_id}/activities?time_slot[start]=#{start_time}&time_slot[stop]=#{stop_time}", {
       headers: {
-        'Content-Type' => 'application/json',
         Accept: 'application/json',
         Authorization: "Bearer #{access_token}"
       }

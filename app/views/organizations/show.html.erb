@@ -26,7 +26,7 @@
       <tr>
         <td><%= link_to member.name, member_path(member) %></td>
         <td><%= member.hubstaff_status %></td>
-        <td><%= link_to 'edit', edit_organization_member_path(@organization, member) %></td>
+        <td><%= link_to 'edit', edit_member_path(member) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -40,9 +40,9 @@
   <tbody>
     <% @organization.projects.each do |project| %>
       <tr>
-        <td><%= link_to project.title, organization_project_path(@organization, project) %></td>
+        <td><%= link_to project.title, project_path(project) %></td>
         <td><%= project.hubstaff_status %></td>
-        <td><%= link_to 'edit', edit_organization_project_path(@organization, project) %></td>
+        <td><%= link_to 'edit', edit_project_path(project) %></td>
       </tr>
     <% end %>
   </tbody>

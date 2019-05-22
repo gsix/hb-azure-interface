@@ -27,6 +27,10 @@ class MembersController < ApplicationController
     redirect_to organization_path @organization
   end
 
+  def edit
+    @hubstaff_users = Organization.hubstaff_users
+  end
+
   def update
     if @member.update_attributes member_params
       redirect_to member_path @member

@@ -22,6 +22,10 @@ class ProjectsController < ApplicationController
     redirect_to organization_path @organization
   end
 
+  def edit
+    @hubstaff_projects = @project.organization.hubstaff_projects
+  end
+
   def update
     if @project.update_attributes project_params
       redirect_to project_path @project

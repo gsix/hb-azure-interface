@@ -6,6 +6,6 @@
 <%= simple_form_for @project do |f| %>
   <%= f.input :azure_id, readonly: true %>
   <%= f.input :azure_name, readonly: true %>
-  <%= f.input :hubstaff_id %>
+  <%= f.input :hubstaff_id, as: :select, collection: @hubstaff_projects.map {|raw| [raw['name'], raw['id']]} %>
   <%= f.button :submit %>
 <% end %>

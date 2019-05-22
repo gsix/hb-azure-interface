@@ -1,5 +1,6 @@
 class OrganizationsController < ApplicationController
   before_action :find_organization, only: %i(show edit update destroy edit_hubstaff_access update_hubstaff_start_auth_code)
+  skip_before_action :authenticate_user!, only: %i(hubstaff_start_auth_code)
 
   def index
     @organizations = Organization.all
