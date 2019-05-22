@@ -2,3 +2,15 @@
   <span>Wellcome to</span>
   <h1>hubstaff-azure interface</h1>
 </div>
+
+<% if user_signed_in? %>
+  <p style="font-size:12px">
+    <span>your access token:</span>
+    <span id='js-access_token_show_toggler' onclick="
+      document.getElementById('js-access_token_show_toggler').style.display = 'none';
+      document.getElementById('js-access_token').style.display = 'inline-block'">
+      <%= link_to 'show', 'javascript:void(0)' %>
+    </span>
+    <span style='display:none' id='js-access_token'><%= current_user.access_token %></span>
+  </p>
+<% end %>
