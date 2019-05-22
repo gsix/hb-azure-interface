@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'api/base#home'
+  devise_for :users
+  root 'application#home'
 
   resources :members
   resources :projects

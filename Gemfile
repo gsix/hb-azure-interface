@@ -15,6 +15,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'simple_form'
 gem 'httparty'
 gem 'whenever', require: false
+gem 'devise'
 
 group :development, :test do
   gem 'awesome_print'
