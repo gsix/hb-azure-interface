@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
-  def home
-  end
+  before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: %i(home)
 end
