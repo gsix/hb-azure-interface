@@ -28,7 +28,7 @@ class Organization < ApplicationRecord
   end
 
   def hubstaff_projects
-    Rails.cache.fetch("organizations/#{id}/hubstaff_projects", expires_in: 2.hours) do
+    Rails.cache.fetch("organizations/#{id}/hubstaff_projects", expires_in: 1.minute) do
       res = HubstaffClient.new.organization_projects fresh_hubstaff_access_token, hubstaff_id
       res.parsed_response['projects']
     end

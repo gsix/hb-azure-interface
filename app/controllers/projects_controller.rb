@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :find_project, only: %i(show edit update)
+  before_action :find_project, only: %i(create_in_hb show edit update)
 
   def azure_list
     @organization = Organization.find(params[:organization_id])
@@ -20,6 +20,24 @@ class ProjectsController < ApplicationController
     Rails.logger.error e
   ensure
     redirect_to organization_path @organization
+  end
+
+  def create_in_hb
+    organization = @project.organization
+    members = organization.members.select {|mem| mem.hubstaff_id.present? }.map {|mem| { 'user_id' => mem.hubstaff_id.to_i, 'role' => 'user' }}
+
+    res = HubstaffClient.new.organization_project_create organization.hubstaff_access_token, organization.hubstaff_id, @project.azure_name, members
+    @project.hubstaff_id = res.parsed_response['project']['id']
+    @project.save
+
+    Rails.cache.clear
+
+    redirect_to edit_project_path(@project)
+  rescue => e
+    Rails.logger.error e
+    Rails.logger.error res
+
+    redirect_to edit_project_path(@project)
   end
 
   def edit

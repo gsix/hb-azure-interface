@@ -58,6 +58,20 @@ class HubstaffClient
     })
   end
 
+  def organization_project_create access_token, organization_id, name, members = []
+    HTTParty.post("https://api.hubstaff.com/v2/organizations/#{organization_id}/projects", {
+      body: {
+        name: name,
+        members: members
+      }.to_json,
+      headers: {
+        'Content-Type' => 'application/json',
+        Accept: 'application/json',
+        Authorization: "Bearer #{access_token}"
+      }
+    })
+  end
+
   def organization_members access_token, organization_id
     HTTParty.get("https://api.hubstaff.com/v2/organizations/#{organization_id}/members", {
       headers: {

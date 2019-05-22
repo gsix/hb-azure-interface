@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root 'application#home'
 
   resources :members
-  resources :projects
+  resources :projects do
+    get 'create-in-hb', action: 'create_in_hb', on: :member
+  end
   resources :tasks
 
   resources :organizations do
