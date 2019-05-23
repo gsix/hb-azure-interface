@@ -8,6 +8,6 @@ class Api::BaseController < ActionController::API
   private
 
   def check_access_token
-    render json: { error: 'token is invalid or not present' }, status: :unauthorized and return if User.where(access_token: params[:token]).none?
+    render json: { error: 'token is invalid or not present' }, status: :unauthorized and return if params[:token] != Rails.application.credentials[Rails.env.to_sym][:api_access_token]
   end
 end

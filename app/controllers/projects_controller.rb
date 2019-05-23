@@ -15,6 +15,7 @@ class ProjectsController < ApplicationController
       project.organization = @organization
 
       project.save
+      project.azure_hooks_create
     end
   rescue => e
     Rails.logger.error e
@@ -23,20 +24,12 @@ class ProjectsController < ApplicationController
   end
 
   def create_in_hb
-    organization = @project.organization
-    members = organization.members.select {|mem| mem.hubstaff_id.present? }.map {|mem| { 'user_id' => mem.hubstaff_id.to_i, 'role' => 'user' }}
-
-    res = HubstaffClient.new.organization_project_create organization.hubstaff_access_token, organization.hubstaff_id, @project.azure_name, members
-    @project.hubstaff_id = res.parsed_response['project']['id']
-    @project.save
+    @project.create_project_in_hubstaff
 
     Rails.cache.clear
-
-    redirect_to edit_project_path(@project)
   rescue => e
     Rails.logger.error e
-    Rails.logger.error res
-
+  ensure
     redirect_to edit_project_path(@project)
   end
 

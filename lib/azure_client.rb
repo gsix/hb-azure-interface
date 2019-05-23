@@ -20,6 +20,30 @@ class AzureClient
     })
   end
 
+  # create webhook for project
+  # event type is (workitem.created|workitem.updated|workitem.deleted)
+  def project_subscription_create organization_id, project_id, event_type, url, access_token
+    HTTParty.post("https://dev.azure.com/#{organization_id}/_apis/hooks/subscriptions?api-version=5.0", {
+      body: {
+        publisherId: 'tfs',
+        eventType: event_type,
+        consumerId: 'webHooks',
+        consumerActionId: 'httpRequest',
+        publisherInputs: {
+          projectId: project_id
+        },
+        consumerInputs: {
+          url: url
+        }
+      }.to_json,
+      headers: {
+        'Content-Type' => 'application/json',
+        Accept: 'application/json'
+      },
+      basic_auth: { username: '', password: access_token }
+    })
+  end
+
   def members organization_id, access_token
     HTTParty.get("https://vsaex.dev.azure.com/#{organization_id}/_apis/userentitlements?top=10000&api-version=5.0-preview.2", {
       basic_auth: { username: '', password: access_token }

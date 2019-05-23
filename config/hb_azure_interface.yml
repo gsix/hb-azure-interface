@@ -1,0 +1,8 @@
+development:
+  host: https://e85a35ed.ngrok.io
+
+stage:
+  host: http://localhost:3000
+
+production:
+  host: http://localhost:3000

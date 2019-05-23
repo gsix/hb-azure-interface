@@ -8,5 +8,6 @@ module HbAzureInterface
   class Application < Rails::Application
     config.load_defaults 5.2
     config.autoload_paths << Rails.root.join('lib')
+    config.hb_azure_interface = OpenStruct.new config_for(:hb_azure_interface).deep_symbolize_keys
   end
 end
