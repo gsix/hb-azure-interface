@@ -4,6 +4,7 @@ class Project < ApplicationRecord
   belongs_to :organization
   has_many :tasks, dependent: :destroy
   has_many :activities
+  after_create :after_create_actions
 
   def title
     azure_name
@@ -26,7 +27,11 @@ class Project < ApplicationRecord
 
     res = HubstaffClient.new.organization_project_create organization.hubstaff_access_token, organization.hubstaff_id, azure_name, members
     self.hubstaff_id = res.parsed_response['project']['id']
+    self.created_in_hubstaff = true
     self.save
+
+    Rails.cache.clear
+    true
   end
 
   def azure_hooks_create
@@ -34,6 +39,7 @@ class Project < ApplicationRecord
     azure_hook_create 'workitem.created', azure_hook_task_create_url(token: access_token)
     azure_hook_create 'workitem.updated', azure_hook_task_update_url(token: access_token)
     azure_hook_create 'workitem.deleted', azure_hook_task_destroy_url(token: access_token)
+    update_attribute :azure_hooks_created, true
     true
   end
 
@@ -45,5 +51,12 @@ class Project < ApplicationRecord
       callback_url,
       organization.azure_access_token
     )
+  end
+
+  private
+
+  def after_create_actions
+    azure_hooks_create if organization.auto_create_azure_hooks_on_project_create?
+    create_project_in_hubstaff if organization.auto_create_hubstaff_project_on_project_create?
   end
 end

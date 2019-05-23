@@ -62,7 +62,7 @@ class OrganizationsController < ApplicationController
   end
 
   def organization_params
-    params.require(:organization).permit(:azure_id, :azure_access_token, :hubstaff_id)
+    params.require(:organization).permit(:azure_id, :azure_access_token, :hubstaff_id, :auto_create_hubstaff_project_on_project_create, :auto_create_azure_hooks_on_project_create)
   end
 
   def organization_exparams

@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :find_project, only: %i(create_in_hb show edit update)
+  before_action :find_project, only: %i(create_in_hb azure_hooks_create show edit update)
 
   def azure_list
     @organization = Organization.find(params[:organization_id])
@@ -15,7 +15,6 @@ class ProjectsController < ApplicationController
       project.organization = @organization
 
       project.save
-      project.azure_hooks_create
     end
   rescue => e
     Rails.logger.error e
@@ -23,14 +22,20 @@ class ProjectsController < ApplicationController
     redirect_to organization_path @organization
   end
 
-  def create_in_hb
-    @project.create_project_in_hubstaff
-
-    Rails.cache.clear
+  def azure_hooks_create
+    @project.azure_hooks_create
   rescue => e
     Rails.logger.error e
   ensure
-    redirect_to edit_project_path(@project)
+    redirect_back(fallback_location: project_path(@project))
+  end
+
+  def create_in_hb
+    @project.create_project_in_hubstaff
+  rescue => e
+    Rails.logger.error e
+  ensure
+    redirect_back(fallback_location: project_path(@project))
   end
 
   def edit

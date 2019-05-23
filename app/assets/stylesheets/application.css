@@ -59,6 +59,10 @@ header a:hover {
   display: block
 }
 
+.simple_form .input input.boolean {
+  display: inline
+}
+
 .extend_info {
   font-size: 12px;
   margin: 5px 0 5px 0

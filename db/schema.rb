@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_23_122912) do
+ActiveRecord::Schema.define(version: 2019_05_23_131018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 2019_05_23_122912) do
     t.datetime "hubstaff_token_get_at"
     t.string "hubstaff_refresh_token"
     t.datetime "hubstaff_token_will_end"
+    t.boolean "auto_create_azure_hooks_on_project_create", default: true
+    t.boolean "auto_create_hubstaff_project_on_project_create", default: true
   end
 
   create_table "projects", force: :cascade do |t|
@@ -61,6 +63,8 @@ ActiveRecord::Schema.define(version: 2019_05_23_122912) do
     t.string "hubstaff_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "azure_hooks_created"
+    t.boolean "created_in_hubstaff"
     t.index ["organization_id"], name: "index_projects_on_organization_id"
   end
 

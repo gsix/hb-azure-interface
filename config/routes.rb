@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :members
   resources :projects do
     get 'create-in-hb', action: 'create_in_hb', on: :member
+    get 'azure-hooks-create', action: 'azure_hooks_create', on: :member
   end
   resources :tasks
 

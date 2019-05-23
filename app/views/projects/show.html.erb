@@ -6,7 +6,22 @@
 <div class="extend_info">
   <p>azure_id: <%= @project.azure_id %></p>
   <p>azure_name: <%= @project.azure_name %></p>
+
+  <% if @project.azure_hooks_created? %>
+    <p><%= link_to 'azure hooks create', '#' %> - created</p>
+  <% else %>
+    <p><%= link_to 'azure hooks create', azure_hooks_create_project_path(@project) %></p>
+  <% end %>
+
   <p>hubstaff_id: <%= @project.hubstaff_id %></p>
+  <p><%= @project.hubstaff_status %></p>
+
+  <% if @project.created_in_hubstaff? %>
+    <p><%= link_to 'create project in HB', '#' %> - created</p>
+  <% else %>
+    <p><%= link_to 'create project in HB', create_in_hb_project_path(@project) %></p>
+  <% end %>
+
   <p>tracked: <%= @project.tracked_hours %>h</p>
 </div>
 
