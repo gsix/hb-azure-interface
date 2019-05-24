@@ -16,6 +16,7 @@ gem 'simple_form'
 gem 'httparty'
 gem 'whenever', require: false
 gem 'devise'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'awesome_print'
