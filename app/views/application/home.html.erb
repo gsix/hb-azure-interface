@@ -1,6 +1,13 @@
 <div class='resource_title'>
-  <span>Wellcome to</span>
-  <h1>hubstaff-azure interface</h1>
+  <span>Hubstaff - Azure Interface</span>
+  <h1>HAZI</h1>
 </div>
 
-<%= @rendered_usage.html_safe %>
+<div class='toggle-wrapper'>
+  <div class='toggler'>
+    <p><a href='javascript:void(0)'>Руководство</a></p>
+  </div>
+  <div class='toggle-content'>
+    <%= @rendered_usage.html_safe %>
+  </div>
+</div>

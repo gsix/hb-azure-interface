@@ -11,7 +11,7 @@ class Project < ApplicationRecord
   end
 
   def hubstaff_status
-    hubstaff_id.present? ? 'HB connected' : 'HB not connected'
+    hubstaff_id.present? ? 'Синхронизировано с Hubstaff' : 'Не подключено к Hubstaff'
   end
 
   def tracked
@@ -19,19 +19,21 @@ class Project < ApplicationRecord
   end
 
   def tracked_hours
-    (tracked/3600.0).ceil(1)
+    (tracked/3600.0).ceil(2)
   end
 
   def create_project_in_hubstaff
     members = organization.members.select {|mem| mem.hubstaff_id.present? }.map {|mem| { 'user_id' => mem.hubstaff_id.to_i, 'role' => 'user' }}
 
-    res = HubstaffClient.new.organization_project_create organization.hubstaff_access_token, organization.hubstaff_id, azure_name, members
+    res = HubstaffClient.new.organization_project_create organization.fresh_hubstaff_access_token, organization.hubstaff_id, azure_name, members
     self.hubstaff_id = res.parsed_response['project']['id']
     self.created_in_hubstaff = true
     self.save
 
     Rails.cache.clear
     true
+  rescue => e
+    Rails.logger.error e
   end
 
   def azure_hooks_create
@@ -41,6 +43,8 @@ class Project < ApplicationRecord
     azure_hook_create 'workitem.deleted', azure_hook_task_destroy_url(token: access_token)
     update_attribute :azure_hooks_created, true
     true
+  rescue => e
+    Rails.logger.error e
   end
 
   def azure_hook_create event_type, callback_url

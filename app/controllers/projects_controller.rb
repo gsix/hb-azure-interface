@@ -13,12 +13,9 @@ class ProjectsController < ApplicationController
       project.azure_id = raw_project['id']
       project.azure_name = raw_project['name']
       project.organization = @organization
-
       project.save
     end
-  rescue => e
-    Rails.logger.error e
-  ensure
+
     redirect_to organization_path @organization
   end
 

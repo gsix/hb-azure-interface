@@ -9,7 +9,7 @@ class Task < ApplicationRecord
   end
 
   def tracked_hours
-    (tracked/3600.0).ceil(1)
+    (tracked/3600.0).ceil(2)
   end
 
   def tracked_azure_update

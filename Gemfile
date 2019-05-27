@@ -17,6 +17,7 @@ gem 'httparty'
 gem 'whenever', require: false
 gem 'devise'
 gem 'redcarpet'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'awesome_print'

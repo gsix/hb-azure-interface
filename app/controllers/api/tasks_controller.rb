@@ -26,6 +26,7 @@ class Api::TasksController < Api::BaseController
 
   def azure_hook_update
     render json: {}, status: :ok and return if params[:resource][:revision][:fields]['System.AssignedTo'].nil?
+    render json: {}, status: :ok and return if params[:resource][:fields]['Microsoft.VSTS.Scheduling.CompletedWork'].present?
 
     task = Task.find_or_initialize_by azure_id: params[:resource][:revision][:id]
     task.title = params[:resource][:revision][:fields]['System.Title']

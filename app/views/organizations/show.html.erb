@@ -1,5 +1,5 @@
 <div class="resource_title">
-  <span>Organization <%= @organization.id %></span>
+  <span>Организация <%= @organization.id %></span>
   <h1><%= @organization.title %></h1>
 </div>
 
@@ -7,18 +7,18 @@
   <p>azure_id: <%= @organization.azure_id %></p>
   <p>
     hubstaff_id: <%= @organization.hubstaff_id %>
-    <%= link_to 'hubstaff access edit', edit_hubstaff_access_organization_path(@organization) %>
+    <%= link_to 'Настроить доступ Hubstaff', edit_hubstaff_access_organization_path(@organization) %>
   </p>
 </div>
 
 <div>
-  <%= link_to 'edit', edit_organization_path(@organization) %>
-  <%= link_to 'delete', organization_path(@organization), method: :delete %></p>
+  <%= link_to 'Редактировать', edit_organization_path(@organization) %>
+  <%= link_to 'Удалить', organization_path(@organization), method: :delete %></p>
 </div>
 <hr />
 
-<span>members: </span>
-<%= link_to 'get azure list', get_from_azure_organization_members_path(@organization) %>
+<span>Участники: </span>
+<%= link_to 'Обновить', get_from_azure_organization_members_path(@organization) %>
 
 <table>
   <tbody>
@@ -26,7 +26,7 @@
       <tr>
         <td><%= link_to member.name, member_path(member) %></td>
         <td><%= member.hubstaff_status %></td>
-        <td><%= link_to 'edit', edit_member_path(member) %></td>
+        <td><%= link_to 'Редактировать', edit_member_path(member) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,7 +34,7 @@
 <hr />
 
 <span>projects: </span>
-<%= link_to 'get azure list', get_from_azure_organization_projects_path(@organization) %>
+<%= link_to 'Обновить', get_from_azure_organization_projects_path(@organization) %>
 
 <table>
   <tbody>
@@ -42,7 +42,7 @@
       <tr>
         <td><%= link_to project.title, project_path(project) %></td>
         <td><%= project.hubstaff_status %></td>
-        <td><%= link_to 'edit', edit_project_path(project) %></td>
+        <td><%= link_to 'Редактировать', edit_project_path(project) %></td>
       </tr>
     <% end %>
   </tbody>

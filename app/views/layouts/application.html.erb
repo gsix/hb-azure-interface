@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HbAzureInterface</title>
+    <title>HAZI</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application' %>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
@@ -17,15 +17,15 @@
         <tbody>
           <tr>
             <td>
-              <%= link_to 'home', root_path %>
-              <%= link_to 'organizations', organizations_path %>
-              <%= link_to 'members', members_path %>
+              <%= link_to 'HAZI', root_path %>
+              <%= link_to 'Организации', organizations_path %>
+              <%= link_to 'Сотрудники', members_path %>
             </td>
             <td style='text-align:right;'>
               <% if user_signed_in? %>
-                <%= link_to 'logout', destroy_user_session_path, method: 'delete' %>
+                <%= link_to 'Выйти', destroy_user_session_path, method: 'delete' %>
               <% else %>
-                <%= link_to 'login', new_user_session_path %>
+                <%= link_to 'Войти', new_user_session_path %>
               <% end %>
             </td>
           </tr>

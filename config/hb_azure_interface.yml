@@ -1,5 +1,5 @@
 development:
-  host: https://e85a35ed.ngrok.io
+  host: https://c4513454.ngrok.io
 
 stage:
   host: http://localhost:3000

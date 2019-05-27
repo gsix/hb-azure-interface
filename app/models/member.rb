@@ -6,6 +6,6 @@ class Member < ApplicationRecord
   end
 
   def hubstaff_status
-    hubstaff_id.present? ? 'HB connected' : 'HB not connected'
+    hubstaff_id.present? ? 'Синхронизировано с Hubstaff' : 'Не подключено к Hubstaff'
   end
 end
