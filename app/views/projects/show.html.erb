@@ -1,49 +1,54 @@
 <div class="resource_title">
-  <span>Project <%= @project.id %></span>
+  <span>Проект <%= @project.id %></span>
   <h1><%= @project.title %></h1>
 </div>
 
 <div class="extend_info">
   <p>azure_id: <%= @project.azure_id %></p>
-  <p>azure_name: <%= @project.azure_name %></p>
+  <p>Название в azure: <%= @project.azure_name %></p>
 
   <% if @project.azure_hooks_created? %>
-    <p><%= link_to 'azure hooks create', '#' %> - created</p>
+    <p><%= link_to 'Хуки в azure созданы', 'javascript:void(0)', class: 'btn success small' %></p>
   <% else %>
-    <p><%= link_to 'azure hooks create', azure_hooks_create_project_path(@project) %></p>
+    <p><%= link_to 'Создать хуки в azure', azure_hooks_create_project_path(@project), class: 'btn primary small' %></p>
   <% end %>
 
   <p>hubstaff_id: <%= @project.hubstaff_id %></p>
   <p><%= @project.hubstaff_status %></p>
 
   <% if @project.created_in_hubstaff? %>
-    <p><%= link_to 'create project in HB', '#' %> - created</p>
+    <p><%= link_to 'Проект в Hubstaff создан', 'javascript:void(0)', class: 'btn success small' %></p>
   <% else %>
-    <p><%= link_to 'create project in HB', create_in_hb_project_path(@project) %></p>
+    <p><%= link_to 'Создать проект в Hubstaff', create_in_hb_project_path(@project), class: 'btn primary small' %></p>
   <% end %>
 
-  <p>tracked: <%= @project.tracked_hours %>h</p>
+  <p>Выполнено: <%= @project.tracked_hours %>ч</p>
 </div>
 
 <div>
-  <%= link_to 'edit', edit_project_path(@project) %>
+  <%= link_to 'Редактировать', edit_project_path(@project), class: 'btn primary' %>
 </div>
-<hr />
-
-<span>organization: </span>
-<%= link_to @project.organization.title, organization_path(@project.organization) %>
 
 <hr />
-tasks:
 
-<table>
-  <tbody>
-    <% @project.tasks.each do |task| %>
-      <tr>
-        <td><%= link_to task.title, task_path(task) %></td>
-        <td><%= task.tracked_hours %>h</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div>
+  <span>В организации: </span>
+  <%= link_to @project.organization.title, organization_path(@project.organization) %>
+</div>
 
+<hr />
+
+<div>
+  <span>Задачи:</span>
+
+  <table>
+    <tbody>
+      <% @project.tasks.each do |task| %>
+        <tr>
+          <td class='main'><%= link_to task.title, task_path(task) %></td>
+          <td><%= task.tracked_hours %>ч</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

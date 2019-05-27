@@ -1,15 +1,15 @@
 <div class="resource_title">
-  <span>Task <%= @task.id %></span>
+  <span>Задача <%= @task.id %></span>
   <h1><%= @task.title %></h1>
 </div>
 
 <div class="extend_info">
   <p>azure_id: <%= @task.azure_id %></p>
   <p>hubstaff_id: <%= @task.hubstaff_id %></p>
-  <p>tracked: <%= @task.tracked_hours %>h</p>
+  <p>Выполнено: <%= @task.tracked_hours %>ч</p>
 </div>
 
 <hr />
-member: <%= link_to @task.member.name, member_path(@task.member) %>
+Сотрудник: <%= link_to @task.member.name, member_path(@task.member) %>
 <hr />
-project: <%= link_to @task.project.title, project_path(@task.project) %>
+Проект: <%= link_to @task.project.title, project_path(@task.project) %>

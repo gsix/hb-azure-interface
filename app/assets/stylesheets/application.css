@@ -47,8 +47,11 @@ header a:hover {
   width: 100%;
   margin: 10px 0px;
   font-size: 12px;
-  background: #f7f7fb;
   padding: 5px;
+}
+
+.container table td.main {
+  font-size: 16px;
 }
 
 .simple_form .input {
@@ -97,4 +100,9 @@ h1 {
 
 .toggle-wrapper .toggle-content.opened {
   display: block
+}
+
+hr {
+  border: 1px solid #e1e1e1;
+  margin: 30px 0
 }

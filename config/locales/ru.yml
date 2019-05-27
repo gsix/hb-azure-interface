@@ -7,14 +7,26 @@ ru:
       project: Проект
 
     attributes:
+      member:
+        azure_id: azure_id
+        hubstaff_id: hubstaff_id
+
+      project:
+        azure_id: azure_id
+        hubstaff_id: hubstaff_id
+
       user:
         password: Пароль
         remember_me: Запомнить меня
+        azure_id: azure_id
+        hubstaff_id: hubstaff_id
 
       organization:
         auto_create_azure_hooks_on_project_create: Автоматически создавать хуки в Azure при создании проекта
         auto_create_hubstaff_project_on_project_create: Автоматически создавать проект в Hubstaff
         hubstaff_start_auth_code: Стартовый код доступа Hubstaff
+        azure_id: azure_id
+        hubstaff_id: hubstaff_id
 
     errors:
       messages:

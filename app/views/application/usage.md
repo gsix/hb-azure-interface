@@ -9,8 +9,8 @@ User.create! email: "admin@mail.ru", password: "password"
 - azure id - id вашей организации в [dev.azure](https://dev.azure.com). Найдёте по url
 - azure access token - документация по созданию [вот](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops)
 - hubstaff id - id вашей организации в [hubstaff](https://hubstaff.com/). Найдёте по url
-- auto create azure hooks on project create - создавать ли автоматичесик вебхуки в азуре при создании проекта
-- auto create hubstaff project on project create - создавать ли автоматически проект в хабстаф при создании проекта
+- Автоматически создавать ли хуки в Azure при создании проекта
+- Автоматически создавать проект в Hubstaff
 
 ### Подключение огранизации к hubstaff
 - На странице организации нажмите "hubstaff access edit"

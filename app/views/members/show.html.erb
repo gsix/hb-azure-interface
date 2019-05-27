@@ -10,7 +10,7 @@
 </div>
 
 <div>
-  <%= link_to 'Редактировать', edit_member_path(@member) %>
+  <%= link_to 'Редактировать', edit_member_path(@member), class: 'btn primary' %>
 </div>
 <hr />
 
@@ -20,7 +20,7 @@
   <tbody>
     <% @member.organizations.each do |organization| %>
       <tr>
-        <td><%= link_to organization.title, organization_path(organization) %></td>
+        <td class='main'><%= link_to organization.title, organization_path(organization) %></td>
       </tr>
     <% end %>
   </tbody>

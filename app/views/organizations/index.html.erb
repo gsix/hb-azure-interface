@@ -4,10 +4,10 @@
   <tbody>
     <% @organizations.each do |organization| %>
       <tr>
-        <td><%= link_to organization.title, organization_path(organization) %></td>
+        <td class='main'><%= link_to organization.title, organization_path(organization) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Добавить', new_organization_path%>
+<%= link_to 'Добавить', new_organization_path, class: 'btn primary' %>

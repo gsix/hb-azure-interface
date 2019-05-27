@@ -12,35 +12,37 @@
 </div>
 
 <div>
-  <%= link_to 'Редактировать', edit_organization_path(@organization) %>
-  <%= link_to 'Удалить', organization_path(@organization), method: :delete %></p>
+  <%= link_to 'Редактировать', edit_organization_path(@organization), class: 'btn primary' %>
+  <%= link_to 'Удалить', organization_path(@organization), method: :delete, class: 'btn warn small', data: { confirm: 'Ю арэ шурэ?' }  %></p>
 </div>
+
 <hr />
 
-<span>Участники: </span>
-<%= link_to 'Обновить', get_from_azure_organization_members_path(@organization) %>
+<span>Сотрудники: </span>
 
 <table>
   <tbody>
     <% @organization.members.each do |member| %>
       <tr>
-        <td><%= link_to member.name, member_path(member) %></td>
+        <td class='main'><%= link_to member.name, member_path(member) %></td>
         <td><%= member.hubstaff_status %></td>
         <td><%= link_to 'Редактировать', edit_member_path(member) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to 'Обновить', get_from_azure_organization_members_path(@organization), class: 'btn primary' %>
+
 <hr />
 
-<span>projects: </span>
-<%= link_to 'Обновить', get_from_azure_organization_projects_path(@organization) %>
+<span>Проекты: </span>
 
 <table>
   <tbody>
     <% @organization.projects.each do |project| %>
       <tr>
-        <td><%= link_to project.title, project_path(project) %></td>
+        <td class='main'><%= link_to project.title, project_path(project) %></td>
         <td><%= project.hubstaff_status %></td>
         <td><%= link_to 'Редактировать', edit_project_path(project) %></td>
       </tr>
@@ -48,3 +50,4 @@
   </tbody>
 </table>
 
+<%= link_to 'Обновить', get_from_azure_organization_projects_path(@organization), class: 'btn primary' %>

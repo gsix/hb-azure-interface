@@ -7,5 +7,5 @@
 
 <%= simple_form_for(@organization, url: update_hubstaff_start_auth_code_organization_path(@organization), method: :post) do |f| %>
   <%= f.input :hubstaff_start_auth_code, input_html: { style: 'width:100%', value: '' } %>
-  <%= f.button :submit %>
+  <%= f.button :submit, class: 'btn primary' %>
 <% end %>

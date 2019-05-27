@@ -1,0 +1,11 @@
+<h1>Проекты</h1>
+
+<table>
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td class='main'><%= link_to project.title, project_path(project) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

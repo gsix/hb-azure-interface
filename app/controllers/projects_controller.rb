@@ -1,6 +1,10 @@
 class ProjectsController < ApplicationController
   before_action :find_project, only: %i(create_in_hb azure_hooks_create show edit update)
 
+  def index
+    @projects = Project.all
+  end
+
   def azure_list
     @organization = Organization.find(params[:organization_id])
 
