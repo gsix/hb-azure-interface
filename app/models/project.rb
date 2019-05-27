@@ -1,5 +1,6 @@
 class Project < ApplicationRecord
   include Rails.application.routes.url_helpers
+  include Connectable
 
   belongs_to :organization
   has_many :tasks, dependent: :destroy
@@ -8,10 +9,6 @@ class Project < ApplicationRecord
 
   def title
     azure_name
-  end
-
-  def hubstaff_status
-    hubstaff_id.present? ? 'Синхронизировано с Hubstaff' : 'Не подключено к Hubstaff'
   end
 
   def tracked

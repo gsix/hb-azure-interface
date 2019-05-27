@@ -1,4 +1,6 @@
 class Organization < ApplicationRecord
+  include Connectable
+
   has_and_belongs_to_many :members
   has_many :projects, dependent: :destroy
 

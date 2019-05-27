@@ -1,0 +1,13 @@
+<div class='connectable_statuses'>
+  <% if resourse.hubstaff_connected? %>
+    <div data-tooltip='синхронизировано с hubstaff' class='tooltiped status hubstaff-logo connected'></div>
+  <% else %>
+    <div data-tooltip='не синхронизировано с hubstaff' class='tooltiped status hubstaff-logo not_connected'></div>
+  <% end %>
+
+  <% if resourse.azure_connected? %>
+    <div data-tooltip='синхронизировано с azure' class='tooltiped status azure-logo connected'></div>
+  <% else %>
+    <div data-tooltip='не синхронизировано с azure' class='tooltiped status azure-logo not_connected'></div>
+  <% end %>
+</div>

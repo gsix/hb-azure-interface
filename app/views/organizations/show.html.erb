@@ -1,7 +1,11 @@
 <div class="resource_title">
   <span>Организация <%= @organization.id %></span>
-  <h1><%= @organization.title %></h1>
+  <h1>
+    <%= @organization.title %>
+    <%= render partial: 'connectable/statuses', locals: { resourse: @organization } %>
+  </h1>
 </div>
+
 
 <div class="extend_info">
   <p>azure_id: <%= @organization.azure_id %></p>
@@ -10,6 +14,7 @@
     <%= link_to 'Настроить доступ Hubstaff', edit_hubstaff_access_organization_path(@organization) %>
   </p>
 </div>
+
 
 <div>
   <%= link_to 'Редактировать', edit_organization_path(@organization), class: 'btn primary' %>
@@ -25,7 +30,7 @@
     <% @organization.members.each do |member| %>
       <tr>
         <td class='main'><%= link_to member.name, member_path(member) %></td>
-        <td><%= member.hubstaff_status %></td>
+        <td><%= render partial: 'connectable/statuses', locals: { resourse: member } %></td>
         <td><%= link_to 'Редактировать', edit_member_path(member) %></td>
       </tr>
     <% end %>
@@ -43,7 +48,7 @@
     <% @organization.projects.each do |project| %>
       <tr>
         <td class='main'><%= link_to project.title, project_path(project) %></td>
-        <td><%= project.hubstaff_status %></td>
+        <td><%= render partial: 'connectable/statuses', locals: { resourse: project } %></td>
         <td><%= link_to 'Редактировать', edit_project_path(project) %></td>
       </tr>
     <% end %>

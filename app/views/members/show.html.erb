@@ -1,6 +1,9 @@
 <div class="resource_title">
   <span>Сотрудник <%= @member.id %></span>
-  <h1><%= @member.name %></h1>
+  <h1>
+    <%= @member.name %>
+    <%= render partial: 'connectable/statuses', locals: { resourse: @member } %>
+  </h1>
 </div>
 
 <div class="extend_info">

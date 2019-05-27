@@ -1,6 +1,9 @@
 <div class="resource_title">
   <span>Проект <%= @project.id %></span>
-  <h1><%= @project.title %></h1>
+  <h1>
+    <%= @project.title %>
+    <%= render partial: 'connectable/statuses', locals: { resourse: @project } %>
+  </h1>
 </div>
 
 <div class="extend_info">
@@ -14,7 +17,6 @@
   <% end %>
 
   <p>hubstaff_id: <%= @project.hubstaff_id %></p>
-  <p><%= @project.hubstaff_status %></p>
 
   <% if @project.created_in_hubstaff? %>
     <p><%= link_to 'Проект в Hubstaff создан', 'javascript:void(0)', class: 'btn success small' %></p>
