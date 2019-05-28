@@ -17,7 +17,9 @@
         <tbody>
           <tr>
             <td>
-              <%= link_to 'HAZI', root_path %>
+              <%= link_to root_path, class: 'logo-link' do %>
+                <div class='hubstaff-azure-logo'></div>
+              <% end %>
               <%= link_to 'Организации', organizations_path %>
               <%= link_to 'Проекты', projects_path %>
               <%= link_to 'Сотрудники', members_path %>

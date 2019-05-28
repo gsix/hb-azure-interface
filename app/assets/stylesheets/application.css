@@ -106,3 +106,27 @@ hr {
   border: 1px solid #e1e1e1;
   margin: 30px 0
 }
+
+header a.logo-link {
+  text-decoration: none;
+}
+
+header .hubstaff-azure-logo {
+  vertical-align: middle;
+  margin-right: 5px;
+  background-image: url('hubstaff-azure-logo-white.png');
+  text-decoration: none;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-size: cover
+}
+
+.hazi-logo {
+  margin-right: 5px;
+  background-image: url('hubstaff-azure-logo.png');
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  background-size: cover
+}
