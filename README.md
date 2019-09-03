@@ -50,3 +50,6 @@ User.create! email: "admin@mail.ru", password: "password"
 - Подключите каждый проект к hubstaff нажав "Редактировать" в его странице. Список ссылок на проекты из hubstaff должен появится при редактировании
 - Либо создайте проект в HB нажав на странице проекта "Создать проект в hubstaff"
 - Создайте хуки нажав "Создать хуки в azure" на странице проекта, если хуки не были созданы
+
+
+* [developer hubstaff docs v2](https://developer.hubstaff.com/docs/hubstaff_v2#/)
